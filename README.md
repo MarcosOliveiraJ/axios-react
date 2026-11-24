@@ -1,17 +1,91 @@
-# React + Vite
+# Listagem de Usuarios com React, Vite e Axios
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicacao web desenvolvida em React para listagem e consulta de usuarios consumindo a API publica JSONPlaceholder atraves do cliente HTTP Axios.
 
-Currently, two official plugins are available:
+## Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19
+- Vite
+- JavaScript (ES6+)
+- Axios
+- CSS puro
 
-## React Compiler
+## API Consumida
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+A aplicacao consome o endpoint `/users` da API publica gratuita JSONPlaceholder:
+`https://jsonplaceholder.typicode.com/users`
 
-## Expanding the ESLint configuration
+Os dados exibidos para cada usuario incluem:
+- Nome
+- Nome de usuario (username)
+- Email
+- Telefone
+- Cidade
+- Empresa
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-"# axios-react" 
+## Funcionalidades
+
+- Requisicao HTTP assincrona utilizando o hook useEffect no ciclo inicial do componente.
+- Configuracao de instancia personalizada do Axios em arquivo separado com baseURL centralizada.
+- Armazenamento dos dados recebidos no estado do componente utilizando useState.
+- Renderizacao dinamica da lista de usuarios com o metodo map e identificador unico via propriedade key.
+- Indicador visual de carregamento ("Carregando dados...") enquanto a requisicao esta em andamento.
+- Tratamento e exibicao amigavel de mensagens de erro caso ocorra falha de conexao ou na API.
+- Componentizacao do card de usuario (UserCard) com recebimento de informacoes via props.
+- Filtro de busca em tempo real por nome atraves de campo input controlado.
+
+## Estrutura do Projeto
+
+```text
+consumo-axios/
+├── public/
+├── src/
+│   ├── components/
+│   │   └── UserCard.jsx
+│   ├── services/
+│   │   └── api.js
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
+```
+
+## Como Executar o Projeto
+
+### Pre-requisitos
+
+- Node.js instalado na maquina (versao 18 ou superior recomendada)
+- Gerenciador de pacotes npm
+
+### Passo a passo
+
+1. Clone o repositorio:
+```bash
+git clone https://github.com/MarcosOliveiraJ/axios-react.git
+cd axios-react
+```
+
+2. Instale as dependencias do projeto:
+```bash
+npm install
+```
+
+3. Inicie o servidor de desenvolvimento:
+```bash
+npm run dev
+```
+
+4. Abra a URL exibida no terminal (normalmente http://localhost:5173) no seu navegador.
+
+### Gerar versao de producao
+
+Para compilar a aplicacao para producao, execute:
+```bash
+npm run build
+```
+
+Os arquivos compilados serao gerados no diretorio `dist/`.
